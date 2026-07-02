@@ -1,0 +1,64 @@
+====================================================
+1. Open Files
+====================================================
+
+Command:
+lsof -p $$
+
+Observation:
+The lsof command displays all files currently opened by the running shell process. This includes terminal devices, shared libraries, and configuration files accessed by the process.
+
+====================================================
+2. File Descriptor Observation
+====================================================
+
+Command:
+ls -l /proc/$$/fd
+
+Observation:
+Linux assigns file descriptors to every open file. Descriptor 0 is standard input, descriptor 1 is standard output, and descriptor 2 is standard error. These descriptors are used by applications for reading and writing data.
+
+====================================================
+3. Output Redirection
+====================================================
+
+Commands:
+echo "Linux File I/O Investigation" > output.txt
+echo "This line is appended." >> output.txt
+cat output.txt
+
+Observation:
+The > operator creates or overwrites a file, while >> appends additional data to an existing file. Output redirection allows command results to be stored instead of displayed on the terminal.
+
+====================================================
+4. Error Redirection
+====================================================
+
+Commands:
+ls non_existing_file 2> error.log
+cat error.log
+
+Observation:
+The 2> operator redirects error messages into a separate file. This makes it easier to analyze errors without mixing them with normal command output.
+
+====================================================
+5. Resource Limits
+====================================================
+
+Command:
+ulimit -a
+
+Observation:
+The ulimit command displays system resource limits applied to the current shell session. These limits control resources such as CPU time, open files, memory, and processes to ensure system stability.
+
+====================================================
+6. How Linux Manages File I/O
+====================================================
+
+Linux manages file input and output through file descriptors. Every process receives standard input (0), standard output (1), and standard error (2). Additional files are assigned higher-numbered descriptors as they are opened. Redirection operators allow users to control where input and output are read from or written to, making Linux highly flexible for scripting and automation.
+
+====================================================
+Conclusion
+====================================================
+
+The investigation demonstrated how Linux manages open files, file descriptors, output redirection, error handling, and process resource limits. These mechanisms provide efficient and secure management of file operations within the operating system.
