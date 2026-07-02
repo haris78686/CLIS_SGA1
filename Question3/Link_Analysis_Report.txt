@@ -1,0 +1,89 @@
+========================================================
+1. Original File Creation
+========================================================
+
+Command:
+echo "This is the original file for link analysis." > original_file.txt
+
+Observation:
+A text file named original_file.txt was created successfully. This file serves as the source for creating both hard and symbolic links.
+
+========================================================
+2. Hard Link Creation
+========================================================
+
+Command:
+ln original_file.txt hard_link.txt
+
+Observation:
+The hard link shares the same inode as the original file. Both filenames refer to the same physical data stored on the disk.
+
+========================================================
+3. Symbolic Link Creation
+========================================================
+
+Command:
+ln -s original_file.txt symbolic_link.txt
+
+Observation:
+The symbolic link stores the pathname of the original file instead of sharing its inode. It acts as a shortcut to the original file.
+
+========================================================
+4. Inode Information
+========================================================
+
+Command:
+ls -li
+
+Output:
+[200~[200~[200~[200~haris@Haris-Jump:~/CLIS_SGA1/Question3$ ls -li
+total 8
+402976 -rw-rw-r-- 2 haris haris 45 Jul  2 17:25 hard_link.txt
+402976 -rw-rw-r-- 2 haris haris 45 Jul  2 17:25 original_file.txt
+402978 lrwxrwxrwx 1 haris haris 17 Jul  2 17:26 symbolic_link.txt -> original_file.txt
+
+Observation:
+The original file and hard link have identical inode numbers, indicating they point to the same file. The symbolic link has a different inode because it references the file path.
+
+========================================================
+5. Metadata Collection
+========================================================
+
+Command:
+stat original_file.txt
+stat hard_link.txt
+stat symbolic_link.txt
+
+Observation:
+The stat command displays detailed metadata, including inode number, permissions, ownership, timestamps, and link count. It confirms the relationship between the original file and the links.
+
+========================================================
+6. Effect of Deleting the Original File
+========================================================
+
+Command:
+rm original_file.txt
+
+Observation:
+The hard link continues to provide access to the file contents because it references the same inode. The symbolic link becomes invalid because its target file no longer exists.
+
+========================================================
+7. Hard Link vs Symbolic Link
+========================================================
+
+Hard Link:
+- Shares the same inode as the original file.
+- Continues to work even if the original filename is deleted.
+- Cannot span different file systems.
+
+Symbolic Link:
+- Has a different inode.
+- Stores the path to the original file.
+- Becomes broken when the original file is deleted.
+- Can link across different file systems.
+
+========================================================
+Conclusion
+========================================================
+
+This experiment demonstrates that hard links directly reference the same inode and remain functional after the original filename is removed. Symbolic links depend on the original file's path and become unusable once the original file is deleted.
