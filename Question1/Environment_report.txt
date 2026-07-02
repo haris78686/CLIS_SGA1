@@ -1,0 +1,92 @@
+Question 1  Linux Environment Verification
+
+-------------------------------------------------------
+1. Username and Groups
+-------------------------------------------------------
+
+Command:
+id
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question1$ id
+uid=1000(haris) gid=1000(haris) groups=1000(haris),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),120(lpadmin),133(lxd),134(sambashare)
+
+Obervation:
+The id command displays the current user's UID, GID, username, and all groups associated with the account. It helps us verify user identity and permissions on the Linux system.
+
+-------------------------------------------------------
+2. Current Shell
+-------------------------------------------------------
+
+Command:
+echo $SHELL
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question1$ sudo echo $SHELL
+[sudo] password for haris: 
+/bin/bash
+
+Observation:
+The echo $SHELL command displays the default shell assigned to the current user. It confirms which shell environment is currently configured.
+
+-------------------------------------------------------
+3. Current Working Directory
+-------------------------------------------------------
+
+Command:
+pwd
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question1$ pwd
+/home/haris/CLIS_SGA1/Question1
+
+Observation:
+The pwd command prints the absolute path of the current working directory. This confirms where commands are being executed.
+
+-------------------------------------------------------
+4. List Files and Directories
+-------------------------------------------------------
+
+Command:
+ls -la
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question1$ ls -la
+total 12
+drwxr-xr-x 2 root root 4096 Jul  2 15:12 .
+drwxr-xr-x 4 root root 4096 Jul  2 14:59 ..
+-rw-r--r-- 1 root root  841 Jul  2 15:12 Environment_report.txt
+
+Observation:
+The ls -la command lists all files and directories, including hidden files. It provides detailed information such as permissions, owner, size, and timestamps.
+
+-------------------------------------------------------
+5. Network Connectivity
+-------------------------------------------------------
+
+Command:
+ping -c 4 google.com
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question1$ ping -c 4 google.com
+PING google.com (142.251.210.142) 56(84) bytes of data.
+64 bytes from dclaxa-as-in-f14.1e100.net (142.251.210.142): icmp_seq=1 ttl=114 time=10.5 ms
+64 bytes from dclaxa-as-in-f14.1e100.net (142.251.210.142): icmp_seq=2 ttl=114 time=10.5 ms
+64 bytes from dclaxa-as-in-f14.1e100.net (142.251.210.142): icmp_seq=3 ttl=114 time=10.4 ms
+64 bytes from 142.251.210.142: icmp_seq=4 ttl=114 time=10.2 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 24055ms
+rtt min/avg/max/mdev = 10.207/10.392/10.520/0.116 ms
+
+Observation:
+The ping command verifies network connectivity by sending ICMP packets to a remote host. Successful responses indicate that the system has internet connectivity.
+
+-------------------------------------------------------
+Conclusion
+-------------------------------------------------------
+
+The Linux environment was successfully verified. User account information, shell, working directory, workspace contents, and internet connectivity were confirmed using standard Linux commands.
+
+
+
