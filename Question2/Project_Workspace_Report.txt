@@ -1,0 +1,108 @@
+======================================================
+1. Umask Value
+======================================================
+
+Command:
+umask
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question2$ umask
+0002
+
+Observation:
+The umask command displays the default permission mask used while creating new files and directories. The current umask value ensures that newly created files are not writable by unauthorized users.
+
+======================================================
+2. Directory Structure Created
+======================================================
+
+Commands:
+mkdir Project_Workspace
+cd Project_Workspace
+touch project_plan.txt documentation.txt README.md
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question2$ sudo mkdir Project_Workspace
+haris@Haris-Jump:~/CLIS_SGA1/Question2$ cd Project_Workspace/
+haris@Haris-Jump:~/CLIS_SGA1/Question2/Project_Workspace$ sudo touch project_plan.txt documentation.txt README.md
+haris@Haris-Jump:~/CLIS_SGA1/Question2/Project_Workspace$ tree
+.
+├── documentation.txt
+├── project_plan.txt
+└── README.md
+
+0 directories, 3 files
+
+
+Observation:
+A dedicated project workspace was created containing three project files. This structure organizes project documents in a separate secure directory.
+
+======================================================
+3. File Permissions Before Modification
+======================================================
+
+Command:
+ls -l
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question2/Project_Workspace$ sudo ls -l
+total 0
+-rw-r--r-- 1 root root 0 Jul  2 16:32 documentation.txt
+-rw-r--r-- 1 root root 0 Jul  2 16:32 project_plan.txt
+-rw-r--r-- 1 root root 0 Jul  2 16:32 README.md
+
+Observation:
+Initially, the files were created with default permissions assigned according to the system umask. These permissions allow the owner full access while providing limited access to others.
+
+======================================================
+4. File Permissions After Modification
+======================================================
+
+Commands:
+chmod 750 .
+chmod 640 *.txt
+chmod 640 README.md
+
+Output:
+haris@Haris-Jump:~/CLIS_SGA1/Question2/Project_Workspace$ sudo chmod 640 documentation.txt
+haris@Haris-Jump:~/CLIS_SGA1/Question2/Project_Workspace$ sudo chmod 640 project_plan.txt
+haris@Haris-Jump:~/CLIS_SGA1/Question2/Project_Workspace$ sudo chmod 640 README.md
+
+haris@Haris-Jump:~/CLIS_SGA1/Question2/Project_Workspace$ sudo ls -ld
+drwxr-x--- 2 root root 4096 Jul  2 16:32 .
+
+Observation:
+Permissions were modified to improve security. Only the owner has full access, group members have read access, and other users have no permissions.
+
+======================================================
+5. Ownership Details
+======================================================
+
+Command:
+ls -ld .
+ls -l
+
+Output:
+root@Haris-Jump:/home/haris/CLIS_SGA1/Question2/Project_Workspace# ls -ld .
+drwxr-x--- 2 root root 4096 Jul  2 16:32 .
+
+root@Haris-Jump:/home/haris/CLIS_SGA1/Question2/Project_Workspace# ls -l
+total 0
+-rw-r----- 1 root root 0 Jul  2 16:32 documentation.txt
+-rw-r----- 1 root root 0 Jul  2 16:32 project_plan.txt
+-rw-r----- 1 root root 0 Jul  2 16:32 README.md
+
+Observation:
+The ownership information confirms that the project directory and files belong to the current user and associated group, ensuring proper administrative control.
+
+======================================================
+6. How Permissions Protect Project Data
+======================================================
+
+Linux permissions restrict unauthorized access to project files. By assigning only the required permissions, confidential project information remains protected while still allowing controlled access to authorized users. This follows the principle of least privilege and improves overall system security.
+
+======================================================
+Conclusion
+======================================================
+
+The secure project workspace was successfully created. Appropriate permissions, ownership, and default umask settings were verified to ensure the project data is protected from unauthorized access.
